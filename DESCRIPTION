@@ -14,7 +14,9 @@ Suggests:
     glmnet,
     testthat
 LinkingTo: Rcpp
-Imports:
-    Rcpp,
+Depends:
     survival
+Imports:
+    methods,
+    Rcpp
 RoxygenNote: 5.0.1
