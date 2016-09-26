@@ -22,15 +22,16 @@
 #' This function uses \link{tidymatrix} function to obtain a matrix from the
 #' \link{iregnet} object. It can be directly used to produce other plots.
 #'
-plot.iregnet <- function(fit, xvar=c("norm", "lambda"), label=T, ...) {
-  stopifnot_error("Invalid / no fit object provided", !missing(fit),
-                  class(fit) == "iregnet")
+#' @method
+plot.iregnet <- function(x, xvar=c("norm", "lambda"), label=T, ...) {
+  stopifnot_error("Invalid / no x object provided", !missing(x),
+                  class(x) == "iregnet")
   xvar <- match.arg(xvar)
 
-  tidym <- tidymatrix(fit)
-  start_index <- as.integer(fit$intercept) + 1
-  n <- nrow(fit$beta)
-  varnames <- rownames(fit$beta)[start_index:n]
+  tidym <- tidymatrix(x)
+  start_index <- as.integer(x$intercept) + 1
+  n <- nrow(x$beta)
+  varnames <- rownames(x$beta)[start_index:n]
   coefficients <- tidym[, varnames]
   switch(xvar,
     "lambda" = {
